@@ -9,16 +9,16 @@ import java.util.Arrays;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/students")
-public class ApiController {
+@RequestMapping("api/admin")
+public class AdminController {
 
-    @GetMapping("/{studentId}")
-    public String getStudent(@PathVariable Integer studentId) {
-        return "Student:" + studentId;
+    @GetMapping("/{infoId}")
+    public String getSecretInfo(@PathVariable Integer infoId) {
+        return "SecretInfo:" + infoId;
     }
 
     @GetMapping
-    public List<String> getStudents() {
-        return Arrays.asList("Student:1", "Student:2", "Student:3");
+    public List<String> getSecretInfo() {
+        return Arrays.asList("SecretInfo:1", "SecretInfo:2", "SecretInfo:3");
     }
 }
