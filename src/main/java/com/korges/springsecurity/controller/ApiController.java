@@ -5,6 +5,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Arrays;
+import java.util.List;
+
 @RestController
 @RequestMapping("api/students")
 public class ApiController {
@@ -12,5 +15,10 @@ public class ApiController {
     @GetMapping("/{studentId}")
     public String getStudent(@PathVariable Integer studentId) {
         return "Student:" + studentId;
+    }
+
+    @GetMapping
+    public List<String> getStudents() {
+        return Arrays.asList("Student:1", "Student:2", "Student:3");
     }
 }
