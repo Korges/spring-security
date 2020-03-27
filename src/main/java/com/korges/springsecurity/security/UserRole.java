@@ -1,6 +1,7 @@
 package com.korges.springsecurity.security;
 
 import com.google.common.collect.Sets;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -17,6 +18,7 @@ enum UserRole {
     USER(Sets.newHashSet(USER_READ, USER_WRITE)),
     GUEST(Sets.newHashSet());
 
+    @Getter(AccessLevel.PRIVATE)
     private final Set<UserPermission> permissions;
 
     public Set<SimpleGrantedAuthority> getGrantedAuthorities() {
