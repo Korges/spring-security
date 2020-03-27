@@ -20,17 +20,17 @@ public class UserController {
     }
 
     @PostMapping
-    public void postUser(@RequestBody String user) {
-        System.out.println("Post new User: " + user);
+    public String postUser(@RequestBody String user) {
+        return "Post new User: " + user;
     }
 
     @DeleteMapping("/{userId}")
-    public void deleteUser(@PathVariable Integer userId) {
-        System.out.println("User deleted:" + userId);
+    public String deleteUser(@PathVariable Integer userId) {
+        return "User deleted:" + userId;
     }
 
-    @PutMapping
-    public void updateUser(@PathVariable Integer userId, @RequestBody String user) {
-        System.out.println(user + userId);
+    @PutMapping("/{userId}")
+    public String updateUser(@PathVariable Integer userId, @RequestBody String user) {
+        return user + userId;
     }
 }
