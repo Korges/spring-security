@@ -2,6 +2,7 @@ package com.korges.springsecurity.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -12,6 +13,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
+import static com.korges.springsecurity.security.UserPermission.USER_READ;
+import static com.korges.springsecurity.security.UserPermission.USER_WRITE;
 import static com.korges.springsecurity.security.UserRole.*;
 
 @Configuration
@@ -23,7 +26,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/api/**").hasRole(ADMIN.name())
+                .antMatchers("/").permitAll()
+                .antMatchers("/api/users/**").hasAuthority(USER_READ.getPermission())
+                .antMatchers(HttpMethod.POST, "/api/users/**").hasAuthority(USER_WRITE.getPermission())
+                .antMatchers(HttpMethod.PUT, "/api/users/**").hasAuthority(USER_WRITE.getPermission())
+                .antMatchers(HttpMethod.DELETE, "/api/users/**").hasAuthority(USER_WRITE.getPermission())
+                .antMatchers("/api/admin/**").hasRole(ADMIN.name())
                 .anyRequest()
                 .authenticated()
                 .and()

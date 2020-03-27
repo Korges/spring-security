@@ -16,7 +16,7 @@ import static com.korges.springsecurity.security.UserPermission.*;
 enum UserRole {
     ADMIN(Sets.newHashSet(ADMIN_READ, ADMIN_WRITE, USER_READ, USER_WRITE)),
     USER(Sets.newHashSet(USER_READ, USER_WRITE)),
-    GUEST(Sets.newHashSet());
+    GUEST(Sets.newHashSet(USER_READ));
 
     @Getter(AccessLevel.PRIVATE)
     private final Set<UserPermission> permissions;
