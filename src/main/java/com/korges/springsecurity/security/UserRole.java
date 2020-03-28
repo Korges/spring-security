@@ -11,7 +11,6 @@ import java.util.stream.Collectors;
 
 import static com.korges.springsecurity.security.UserPermission.*;
 
-@Getter
 @AllArgsConstructor
 enum UserRole {
     ADMIN(Sets.newHashSet(ADMIN_READ, ADMIN_WRITE, USER_READ, USER_WRITE)),
